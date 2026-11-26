@@ -1,0 +1,64 @@
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#e8f1f8;color:#12263a;display:flex;justify-content:center;padding:1.25rem}
+.app{width:100%;max-width:30rem}
+h1{font-size:clamp(1.7rem,6vw,2.4rem);margin:1rem 0}
+h2{margin:0 0 .5rem;font-size:1.3rem}
+.oculto{position:absolute;left:-9999px}
+
+form{display:flex;gap:.5rem}
+input{flex:1;min-width:0;padding:.8rem 1rem;font:inherit;border:2px solid #b7c9d9;border-radius:.75rem}
+button{padding:.8rem 1.2rem;font:inherit;font-weight:600;background:#1b5fa8;color:#fff;border:0;border-radius:.75rem;cursor:pointer}
+button:hover{background:#154c87}
+:focus-visible{outline:3px solid #f0a500;outline-offset:2px}
+
+#mensaje{min-height:1.5rem;margin:.75rem 0;color:#8a2b2b}
+section{background:#fff;border-radius:1rem;padding:1.25rem;margin-top:1rem}
+.temp{font-size:3.5rem;font-weight:700;margin:0;line-height:1}
+#desc{font-size:1.2rem;margin:.25rem 0}
+#detalle{color:#4a5e72;margin:0}
+
+#dias{list-style:none;margin:0;padding:0}
+#dias li{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid #e1e8ef}
+#dias li:last-child{border-bottom:0}
+
+.escena{margin-top:1rem;border-radius:1.1rem;overflow:hidden;
+  --cielo:#8ed1fc;--mar:#3aa0e6;--arena:#e8c48f;--astro:#ffd54a;
+  --haz:0;--estrellas:0;--nubes:0}
+.escena svg{display:block;width:100%;height:auto}
+.escena.atardecer{--cielo:#f08a4b;--mar:#5b4a9c;--arena:#dca274;--astro:#ffb347;--haz:.45;--estrellas:.2}
+.escena.amanecer{--cielo:#f6b8a8;--mar:#4f8fd6;--arena:#ecc9a0;--astro:#ffd08a;--haz:.2;--estrellas:.1}
+.escena.noche{--cielo:#0b1026;--mar:#14308a;--arena:#c9a77c;--astro:#f4f1de;--haz:.8;--estrellas:1}
+.escena.nublado{--nubes:.9}
+
+.cielo{fill:var(--cielo);transition:fill 1s}
+.mar{fill:var(--mar);transition:fill 1s}
+.arena{fill:var(--arena);transition:fill 1s}
+.astro{fill:var(--astro);transition:transform 1s,fill 1s}
+.amanecer .astro,.atardecer .astro{transform:translate(0,70px)}
+.noche .astro{transform:translate(0,-15px)}
+.estrellas{fill:#fff;opacity:var(--estrellas);transition:opacity 1s}
+.noche .estrellas{animation:brillo 3s ease-in-out infinite alternate}
+.nubes{fill:#fff;opacity:var(--nubes);transition:opacity 1s}
+.noche .nubes{fill:#6c7799}
+.haz{fill:#ffd36b;opacity:var(--haz);transition:opacity 1s}
+.noche .haz{animation:faro 4s ease-in-out infinite alternate}
+.tronco{stroke:#7a5a3a;stroke-width:3;fill:none}
+.hojas{fill:#3f9c4f}
+.faro{fill:#f6f3ee}
+.franja{fill:#d9473b}
+.lampara{fill:#ffe9a8}
+.techo{fill:#d9473b}
+.puerta{fill:#8a5a3a}
+.vela{fill:#fff}
+.casco{fill:#e8803a}
+.gotas{stroke:#cfe3f5;stroke-width:1.5;opacity:0}
+.gotas line{stroke-linecap:round}
+.escena.lluvia .gotas{opacity:.8;animation:caer .8s linear infinite}
+
+@keyframes brillo{from{opacity:.55}to{opacity:1}}
+@keyframes faro{from{opacity:.5}to{opacity:.9}}
+@keyframes caer{from{transform:translateY(-12px)}to{transform:translateY(12px)}}
+@media (prefers-reduced-motion:reduce){.escena *{animation:none!important;transition:none!important}}
+
+.hora{margin:0 0 .75rem;color:#4a5e72;font-variant-numeric:tabular-nums}
+.hora strong{font-size:1.6rem;color:#12263a;margin-right:.5rem}
